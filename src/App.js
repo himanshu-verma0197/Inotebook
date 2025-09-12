@@ -5,21 +5,19 @@ import Navbar from './components/Navbar';
 import { Home } from './components/Home';
 import About from './components/About';
 import NoteState from './context/notes/NoteState';
-import { Alert } from './components/Alert';
 import Signup from './components/Signup';
 import Login from './components/Login';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-
-
 function App() {
   return (
     <NoteState>
+
       <Router>
         <Navbar />
-        <Alert message="This is an amazing React course" />
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
@@ -29,6 +27,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+
     </NoteState>
   );
 }
