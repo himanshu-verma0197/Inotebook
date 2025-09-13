@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 const Login = (props) => {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     let history = useHistory();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch("http://localhost:5000/api/auth/login", {
@@ -19,12 +18,14 @@ const Login = (props) => {
         console.log(json);
         if (json.success) {
             // Save the auth token and redirect
-            localStorage.setItem('token', json.authtoken);
-            history.push("/");
+            localStorage.setItem('token', json.authToken || json.authtoken);
+            console.log("Saved token:", localStorage.getItem("token"));
 
+            props.showAlert("Logged in successfully", "success")
+            history.push("/");
         }
         else {
-            alert("Invalid credentials");
+            props.showAlert("Invalid Credetials", "danger")
         }
     }
 
